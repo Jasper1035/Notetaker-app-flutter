@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notetaker/constants.dart';
-import 'package:notetaker/main_page.dart';
+import 'package:notetaker/core/constants.dart';
+import 'package:notetaker/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
