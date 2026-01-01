@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notetaker/core/constants.dart';
+import 'package:notetaker/pages/new_or_edit_note_page.dart';
 import 'package:notetaker/widgets/note_fab.dart';
 import 'package:notetaker/widgets/note_grid.dart';
+import 'package:notetaker/widgets/note_icon_button.dart';
+import 'package:notetaker/widgets/note_icon_button_outlined.dart';
 import 'package:notetaker/widgets/note_list.dart';
 import 'package:notetaker/widgets/search_field.dart';
 
@@ -25,21 +28,22 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text("Note Taker📗"),
         actions: [
-          IconButton(
+          NoteIconButtonOutlined(
+            icon: FontAwesomeIcons.rightFromBracket,
             onPressed: () {},
-            icon: FaIcon(FontAwesomeIcons.rightFromBracket),
-            style: IconButton.styleFrom(
-              foregroundColor: white,
-              backgroundColor: primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: black),
-              ),
-            ),
           ),
         ],
       ),
-      floatingActionButton: NoteFab(),
+      floatingActionButton: NoteFab(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewOrEditNotePage(isNewNote: true),
+            ),
+          );
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -49,25 +53,17 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 children: [
-                  IconButton(
+                  NoteIconButton(
                     onPressed: () {
                       setState(() {
                         isDescending = !isDescending;
                       });
                     },
-                    icon: FaIcon(
-                      isDescending
-                          ? FontAwesomeIcons.arrowDown
-                          : FontAwesomeIcons.arrowUp,
-                    ),
-                    padding: EdgeInsets.zero,
-                    visualDensity: VisualDensity.compact,
-                    constraints: BoxConstraints(),
-                    style: IconButton.styleFrom(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    iconSize: 18,
-                    color: gray700,
+                    icon: isDescending
+                        ? FontAwesomeIcons.arrowDown
+                        : FontAwesomeIcons.arrowUp,
+
+                    size: 18,
                   ),
                   SizedBox(width: 16),
                   DropdownButton(
@@ -109,25 +105,16 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   Spacer(),
-                  IconButton(
+                  NoteIconButton(
                     onPressed: () {
                       setState(() {
                         isGrid = !isGrid;
                       });
                     },
-                    icon: FaIcon(
-                      isGrid
-                          ? FontAwesomeIcons.tableCellsLarge
-                          : FontAwesomeIcons.bars,
-                    ),
-                    padding: EdgeInsets.zero,
-                    visualDensity: VisualDensity.compact,
-                    constraints: BoxConstraints(),
-                    style: IconButton.styleFrom(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    iconSize: 18,
-                    color: gray700,
+                    icon: isGrid
+                        ? FontAwesomeIcons.tableCellsLarge
+                        : FontAwesomeIcons.bars,
+                    size: 18,
                   ),
                 ],
               ),
