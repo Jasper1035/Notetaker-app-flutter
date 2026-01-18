@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notetaker/change_notifiers/notes_provider.dart';
 import 'package:notetaker/core/constants.dart';
+import 'package:provider/provider.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({super.key});
@@ -26,6 +28,9 @@ class SearchField extends StatelessWidget {
           borderSide: BorderSide(color: primary),
         ),
       ),
+      onChanged: (newValue) {
+        context.read<NotesProvider>().searchTerm = newValue;
+      },
     );
   }
 }
