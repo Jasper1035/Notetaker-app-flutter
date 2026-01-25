@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notetaker/change_notifiers/new_note_controller.dart';
 import 'package:notetaker/core/constants.dart';
 import 'package:notetaker/core/dialogs.dart';
+import 'package:notetaker/widgets/note_back_button.dart';
 import 'package:notetaker/widgets/note_icon_button_outlined.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:notetaker/widgets/note_metadata.dart';
@@ -71,7 +72,10 @@ class _NewOrEditNotePageState extends State<NewOrEditNotePage> {
           return;
         }
 
-        final bool? shouldSave = await showConfirmationDialog(context: context);
+        final bool? shouldSave = await showConfirmationDialog(
+          context: context,
+          title: toString(),
+        );
         if (shouldSave == null) return;
 
         if (!context.mounted) return;
@@ -83,15 +87,7 @@ class _NewOrEditNotePageState extends State<NewOrEditNotePage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: NoteIconButtonOutlined(
-              icon: FontAwesomeIcons.chevronLeft,
-              onPressed: () {
-                Navigator.maybePop(context);
-              },
-            ),
-          ),
+          leading: NoteBackButton(),
           title: Text(widget.isNewNote ? 'New Note' : 'Edit Note'),
           actions: [
             Selector<NewNoteController, bool>(

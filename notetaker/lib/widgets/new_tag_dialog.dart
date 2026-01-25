@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notetaker/core/constants.dart';
+import 'package:notetaker/widgets/dialog_card.dart';
 import 'package:notetaker/widgets/note_button.dart';
+import 'package:notetaker/widgets/note_form_field.dart';
 
 class NewTagDialog extends StatefulWidget {
   const NewTagDialog({super.key, this.tag});
@@ -32,63 +33,45 @@ class _NewTagDialogState extends State<NewTagDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          "Add tag",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 24),
-        TextFormField(
-          key: tagKey,
-          controller: tagController,
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Add tag(< 16 charactors)',
-            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            isDense: true,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: primary),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: primary),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.red),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.red),
-            ),
+    return DialogCard(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            "Add tag",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.left,
           ),
-          validator: (value) {
-            if (value!.trim().isEmpty) {
-              return 'No tag added';
-            } else if (value.trim().length > 16) {
-              return 'Tags should not be more then 16 characters.';
-            }
-            return null;
-          },
-          onChanged: (value) {
-            tagKey.currentState?.validate();
-          },
-        ),
-        SizedBox(height: 24),
-        NoteButton(
-          label: 'Add',
-          onPressed: () {
-            if (tagKey.currentState?.validate() ?? false) {
-              Navigator.pop(context, tagController.text.trim());
-            }
-          },
-        ),
-      ],
+          SizedBox(height: 24),
+          NoteFormField(
+            key: tagKey,
+            controller: tagController,
+            hintText: 'Add tag (< 16 characters)',
+            validator: (value) {
+              if (value!.trim().isEmpty) {
+                return 'No tag added';
+              } else if (value.trim().length > 16) {
+                return 'Tags should not be more then 16 characters.';
+              }
+              return null;
+            },
+            onChanged: (value) {
+              tagKey.currentState?.validate();
+            },
+            autofocus: true,
+          ),
+          SizedBox(height: 24),
+          NoteButton(
+            child: Text('Add'),
+            onPressed: () {
+              if (tagKey.currentState?.validate() ?? false) {
+                Navigator.pop(context, tagController.text.trim());
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }

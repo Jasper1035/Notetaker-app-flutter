@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'dialog_card.dart';
 import 'note_button.dart';
 
-class ConfirmationDialog extends StatelessWidget {
-  const ConfirmationDialog({super.key, required this.title});
-  final String title;
+class MessageDialog extends StatelessWidget {
+  const MessageDialog({super.key, required this.message});
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ConfirmationDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            message,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             textAlign: TextAlign.start,
           ),
@@ -24,14 +24,8 @@ class ConfirmationDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               NoteButton(
-                onPressed: () => Navigator.pop(context, false),
-                isOutlined: true,
-                child: const Text('No'),
-              ),
-              const SizedBox(width: 8),
-              NoteButton(
-                child: const Text('Yes'),
-                onPressed: () => Navigator.pop(context, true),
+                child: const Text('OK'),
+                onPressed: () => Navigator.pop(context),
               ),
             ],
           ),

@@ -6,7 +6,7 @@ class NoteIconButton extends StatelessWidget {
     super.key,
     required this.icon,
     required this.onPressed,
-    required this.size,
+    this.size,
   });
 
   final IconData icon;
