@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "576159579227",
+    "project_id": "note-taker-d5794",
+    "storage_bucket": "note-taker-d5794.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576159579227:android:8ce317e0ba80738736d37e",
+        "android_client_info": {
+          "package_name": "com.example.notetaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576159579227-mvn4ki6f3vnse7gsdsv32q1hsb8o31o6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.notetaker",
+            "certificate_hash": "25a2ec220a4fc1eabd0d7b90ec6bf8de347d50cf"
+          }
+        },
+        {
+          "client_id": "576159579227-1m2mhuhrve156dtuvko52ek8tvlcsp9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSW54MBWf_r0fxz_F8VLDLMAlxy0cM_Vk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576159579227-1m2mhuhrve156dtuvko52ek8tvlcsp9v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "576159579227-dvm2t4sdarh2as97a2jingvghdbfvr69.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.notetaker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
