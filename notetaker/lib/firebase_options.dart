@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '576159579227',
     projectId: 'note-taker-d5794',
     storageBucket: 'note-taker-d5794.firebasestorage.app',
+    androidClientId: '576159579227-mvn4ki6f3vnse7gsdsv32q1hsb8o31o6.apps.googleusercontent.com',
+    iosClientId: '576159579227-dvm2t4sdarh2as97a2jingvghdbfvr69.apps.googleusercontent.com',
     iosBundleId: 'com.example.notetaker',
   );
 
