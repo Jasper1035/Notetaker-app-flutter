@@ -74,10 +74,6 @@ class RegistrationController extends ChangeNotifier {
         while (!AuthService.isEmailVerified) {
           await Future.delayed(Duration(seconds: 5));
           AuthService.user?.reload();
-
-          print(
-            'Checking verification status : ${AuthService.isEmailVerified}',
-          );
         }
       } else {
         //sign in the user
@@ -97,6 +93,15 @@ class RegistrationController extends ChangeNotifier {
       showMessageDialog(context: context, message: 'An unknown error occured');
     } finally {
       isLoading = false;
+    }
+  }
+
+  Future<void> authenticateWithGoogle({required BuildContext context}) async {
+    try {
+      await AuthService.signInWithGoogle();
+    } catch (e) {
+      if (!context.mounted) return;
+      showMessageDialog(context: context, message: '$e');
     }
   }
 
